@@ -6,10 +6,10 @@ module.exports = {
         .setDescription('Figure out if a Java server is online')
         .addStringOption(option =>
             option.setName('server')
-                .setDescription('The IP of the server')
+                .setDescription('The address of the server')
                 .setRequired(true)
         )
-        .addIntegerOption(option => 
+        .addIntegerOption(option =>
             option.setName('port')
                 .setDescription('The port the server runs on (default 25565)')
         ),
