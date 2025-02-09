@@ -1,11 +1,4 @@
-const { 
-    Client, 
-    GatewayIntentBits, 
-    REST, 
-    Routes, 
-    Collection,
-    Events 
-} = require('discord.js');
+const { REST, Routes } = require('discord.js');
 require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
@@ -34,10 +27,9 @@ const rest = new REST().setToken(process.env.TOKEN);
 (async () => {
 	try {
 		console.log(`Started refreshing ${commands.length} application (/) commands.`);
-
+		console.log(`Bot ID: ${process.env.ID}`);
 		const data = await rest.put(
-            Routes.applicationGuildCommands(process.env.ID, process.env.TESTGUILD),
-			// Routes.applicationGuildCommands(process.env.ID),
+			Routes.applicationCommands(process.env.ID),
 			{ body: commands },
 		);
 
