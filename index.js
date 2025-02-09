@@ -27,6 +27,11 @@ for (const folder of commandFolders) {
 	}
 }
 
+function checkForNewVersion() {
+    
+}
+setInterval(checkForNewVersion, 604800000); // weekly
+
 client.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });

@@ -18,6 +18,7 @@ module.exports = {
         await interaction.deferReply();
 
         const response = await fetch(`https://api.mcstatus.io/v2/status/java/${interaction.options.getString('server')}:${interaction.options.getInteger('port') || 25565}`);
+        
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
