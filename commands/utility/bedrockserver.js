@@ -2,7 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('bedrockserver')
+        .setName('bedrock')
         .setDescription('Figure out if a bedrock server is online')
         .addStringOption(option =>
             option.setName('server')

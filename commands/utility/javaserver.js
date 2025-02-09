@@ -2,7 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('javaserver')
+        .setName('java')
         .setDescription('Figure out if a Java server is online')
         .addStringOption(option =>
             option.setName('server')
