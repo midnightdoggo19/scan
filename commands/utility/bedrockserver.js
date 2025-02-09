@@ -2,18 +2,23 @@ const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('server')
-        .setDescription('Provides info on a Minecraft server')
+        .setName('bedrockserver')
+        .setDescription('Figure out if a Bedrock server is online')
         .addStringOption(option =>
             option.setName('server')
                 .setDescription('The IP of the server')
-                .setRequired(true)),
+                .setRequired(true)
+        )
+        .addIntegerOption(option => 
+            option.setName('port')
+                .setDescription('The port the server runs on (default 25565)')
+        ),
 
     async execute(interaction) {
         await interaction.deferReply();
 
         try {
-            const response = await fetch(`https://api.mcstatus.io/v2/status/java/${interaction.options.getString('server')}`);
+            const response = await fetch(`https://api.mcstatus.io/v2/status/bedrock/${interaction.options.getString('server')}:${interaction.options.getInteger('port') || 25565}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
