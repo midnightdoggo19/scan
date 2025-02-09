@@ -28,7 +28,7 @@ module.exports = {
             const widgetEmbed = new EmbedBuilder()
                 .setColor(0x0099FF) // blue
                 .setTitle('Server Status')
-                .setAuthor({ name: 'Midnight Doggo', iconURL: 'https://avatars.githubusercontent.com/u/71900479?v=4' })
+                .setAuthor({ name: 'Midnight Doggo', iconURL: 'https://avatars.githubusercontent.com/u/71900479?v=4', url: 'https://github.com/midnightdoggo19/scan' })
 
                 .setDescription(String(data.motd.clean)) // unformatted motd
                 .setImage(`https://api.mcstatus.io/v2/icon/${interaction.options.getString('server')}:${interaction.options.getInteger('port') || 25565}`)
@@ -38,8 +38,7 @@ module.exports = {
                     { name: 'Players online', value: `${String(data.players.max)}/${String(data.players.online)}`, inline: true }, // how many online/max
                 )
 
-                .setTimestamp()
-                .setFooter({ text: 'View this project on Github', iconURL: 'https://github.com/midnightdoggo19/scan' });
+                .setTimestamp();
 
             await interaction.editReply({ embeds: [widgetEmbed] });
         } catch (error) {

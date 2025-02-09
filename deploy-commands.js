@@ -40,6 +40,7 @@ const rest = new REST().setToken(process.env.TOKEN);
 	}
 })();
 
-// rest.delete(Routes.applicationCommand(process.env.ID, 'commandId'))
-// 	.then(() => console.log('Successfully deleted application command'))
+// deletes guild commands
+// rest.put(Routes.applicationGuildCommands(process.env.ID, process.env.GUILD), { body: [] })
+// 	.then(() => console.log('Successfully deleted all guild commands.'))
 // 	.catch(console.error);
