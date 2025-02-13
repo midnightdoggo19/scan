@@ -58,4 +58,9 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 });
 
+process.on('SIGINT', function() {
+    logger.info("Caught interrupt signal, shutting down!");
+    process.exit();
+});
+
 client.login(process.env.TOKEN);
