@@ -37,7 +37,7 @@ module.exports = {
             await interaction.editReply({ files: [`https://mineskin.eu/helm/${name}/100.png`] });
         }
         else if ( imageType == 'bust' ) {
-            await interaction.editReply({ files: [`https://mineskin.eu/bust/${name}/100.png`] });
+            await interaction.editReply({ files: [`https://mineskin.eu/armor/bust/${name}/100.png`] });
         }
         else {
             console.error('Invalid option!')
