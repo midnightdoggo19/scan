@@ -2,15 +2,46 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('getskin')
-		.setDescription('Skin a player.').addStringOption(option =>
+		.setName('skin')
+		.setDescription('Images of players')
+        .addStringOption(option =>
             option.setName('name')
                 .setDescription('The player\'s username')
                 .setRequired(true)
+        )
+        .addStringOption(option => 
+            option.setName('type')
+            .setDescription('Type of image')
+            .setRequired(true)
+            .addChoices(
+				{ name: 'Body', value: 'full_front' },
+				{ name: 'Head', value: 'head' },
+				{ name: 'Face', value: 'face' },
+                { name: 'Bust', value: 'bust' },
+			)
         ),
 
 	async execute(interaction) {
         await interaction.deferReply();
-        await interaction.editReply({ files: [`https://mineskin.eu/armor/body/${interaction.options.getString('name')}/100.png`] })
+        const name = interaction.options.getString('name');
+        const imageType = interaction.options.getString('type');
+        const me = await fetch('https://sessionserver.mojang.com/session/minecraft/profile/10479094-a76e-44dc-98a4-e4b18cacc929');
+
+        if ( imageType == 'full_front' ) {
+            await interaction.editReply({ files: [`https://mineskin.eu/armor/body/${name}/100.png`] });
+        }
+        else if ( imageType == 'head' ) {
+            await interaction.editReply({ files: [`https://mineskin.eu/headhelm/${name}/100.png`] });
+        }
+        else if ( imageType == 'face' ) {
+            await interaction.editReply({ files: [`https://mineskin.eu/helm/${name}/100.png`] });
+        }
+        else if ( imageType == 'bust' ) {
+            await interaction.editReply({ files: [`https://mineskin.eu/bust/${name}/100.png`] });
+        }
+        else {
+            console.error('Invalid option!')
+            await interaction.editReply('Invalid option!')
+        }
 	},
 };
