@@ -36,7 +36,7 @@ module.exports = {
                 .addFields(
                     { name: '\u200B', value: '\u200B' },
                     { name: 'Version', value: String(data.version.name_clean), inline: true }, // unformatted version name
-                    { name: 'Players online', value: `${String(data.players.max)}/${String(data.players.online)}`, inline: true }, // how many online/max
+                    { name: 'Players online', value: `${String(data.players.online)}/${String(data.players.max)}`, inline: true }, // how many online/max
                 )
 
                 .setTimestamp();
