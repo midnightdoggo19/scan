@@ -17,6 +17,7 @@ Fill your Discord application's information in `.example.env` and rename it to `
 npm run register
 npm start
 ```
+You can either add the bot to a server or as a client-side bot to use it anywhere :D
 # Required Intents:
 * Server Members
 * Message Content
