@@ -29,11 +29,11 @@ module.exports = {
         await interaction.deferReply();
         const name = interaction.options.getString('name');
         const imageType = interaction.options.getString('type');
-        const UUID = await fetch(`https://api.mojang.com/users/profiles/minecraft/${name}`);
-        if (!UUID.ok) {
-            logger.error(`HTTP error! Status: ${response.status}`);
-        };
-        console.log(UUID);
+        // const UUID = await fetch(`https://api.mojang.com/users/profiles/minecraft/${name}`);
+        // if (!UUID.ok) {
+        //     logger.error(`HTTP error! Status: ${response.status}`);
+        // };
+        // console.log(UUID);
 
         if ( imageType == 'full_front' ) {
             await interaction.editReply({ files: [`https://mineskin.eu/armor/body/${name}/100.png`] });
@@ -48,7 +48,7 @@ module.exports = {
             await interaction.editReply({ files: [`https://mineskin.eu/armor/bust/${name}/100.png`] });
         }
         else if ( imageType == 'skin') {
-            await interaction.editReply({ files: [`https://sessionserver.mojang.com/session/minecraft/profile/${UUID}`] })
+            await interaction.editReply({ files: [`https://mineskin.eu/skin/${name}` + '.png'] }); // get skin, make image
         }
         else {
             logger.error('Invalid option!')
