@@ -12,7 +12,9 @@ module.exports = {
         .addIntegerOption(option =>
             option.setName('port')
                 .setDescription('The port the server runs on (default 25565)')
-        ),
+        )
+        .setContexts(0, 1, 2)
+        .setIntegrationTypes(0, 1),
 
     async execute(interaction) {
         await interaction.deferReply();

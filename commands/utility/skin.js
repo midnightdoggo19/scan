@@ -19,7 +19,9 @@ module.exports = {
 				{ name: 'Face', value: 'face' },
                 { name: 'Bust', value: 'bust' },
 			)
-        ),
+        )
+        .setContexts(0, 1, 2)
+        .setIntegrationTypes(0, 1),
 
 	async execute(interaction) {
         await interaction.deferReply();
