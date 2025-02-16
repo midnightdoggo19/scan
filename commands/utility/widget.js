@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { logger } = require('../../functions.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -27,7 +28,7 @@ module.exports = {
 
             await interaction.editReply({ embeds: [widgetEmbed] });
         } catch (error) {
-            console.error('Error:', error);
+            logger.error('Error:', error);
             await interaction.editReply('Failed to fetch server widget.');
         }
     }

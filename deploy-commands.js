@@ -2,7 +2,7 @@ const { REST, Routes } = require('discord.js');
 require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
-const { logger } = require('./index.js');
+const { logger } = require('./functions.js');
 
 const commands = [];
 const foldersPath = path.join(__dirname, 'commands');
@@ -21,7 +21,6 @@ for (const folder of commandFolders) {
 		}
 	}
 }
-
 
 const rest = new REST().setToken(process.env.TOKEN);
 

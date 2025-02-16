@@ -6,22 +6,10 @@ const {
 const fs = require('node:fs');
 const path = require('node:path');
 require('dotenv').config()
-const winston = require('winston');
+const { logger, checkForNewVersion } = require('./functions.js');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages] });
 client.commands = new Collection();
-
-const logger = winston.createLogger({
-	level: process.env.LOGLEVEL || 'info',
-	format: winston.format.combine(
-		  winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-		  winston.format.printf(info => `[${info.timestamp}] ${info.level.toUpperCase()}: ${info.message}`)
-	),
-	transports: [
-		  new winston.transports.Console(),
-		  new winston.transports.File({ filename: process.env.LOGFILE || 'logger.log' }),
-	]
-});
 
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
@@ -35,20 +23,15 @@ for (const folder of commandFolders) {
 		if ('data' in command && 'execute' in command) {
 			client.commands.set(command.data.name, command);
 		} else {
-			logger.warn(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+			logger.warn(`The command at ${filePath} is missing a required "data" or "execute" property.`);
 		}
 	}
 }
 
-module.exports = { logger }
-
-function checkForNewVersion() {
-    
-}
 setInterval(checkForNewVersion, 604800000); // weekly
 
 client.once(Events.ClientReady, readyClient => {
-	logger.log(`Ready! Logged in as ${readyClient.user.tag}`);
+	logger.info(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 
 client.on(Events.InteractionCreate, async interaction => {
@@ -66,9 +49,9 @@ client.on(Events.InteractionCreate, async interaction => {
 	} catch (error) {
 		logger.error(error);
 		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({ content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral });
+			await interaction.followUp({ content: 'There was an error while executing this command!', flags: 64 });
 		} else {
-			await interaction.reply({ content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral });
+			await interaction.reply({ content: 'There was an error while executing this command!', flags: 64 });
 		}
 	}
 });
