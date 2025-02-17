@@ -2,8 +2,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node --no-warnings=ExperimentalWarning .",
-    "register": "node deploy-commands.js"
+    "start": "node --no-warnings=ExperimentalWarning ."
   },
   "dependencies": {
     "discord.js": "^14.18.0",
