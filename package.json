@@ -9,6 +9,7 @@
     "discord.js": "^14.17.3",
     "dotenv": "^16.4.7",
     "fs": "^0.0.1-security",
+    "js-levenshtein": "^1.1.6",
     "winston": "^3.17.0"
   },
   "devDependencies": {
