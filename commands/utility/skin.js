@@ -29,13 +29,7 @@ module.exports = {
         await interaction.deferReply();
         const name = interaction.options.getString('name');
         const imageType = interaction.options.getString('type');
-        try {
-            await nameValidation(name);
-        }
-        catch (NameInvalid) {
-            interaction.editReply(`${name} is not a valid Minecraft username!`);
-            return;
-        };
+        try { await nameValidation(name); } catch (NameInvalid) { interaction.editReply(`${name} is not a valid Minecraft username!`); return; };
 
         if ( imageType == 'full_front' ) {
             await interaction.editReply({ files: [`https://mineskin.eu/armor/body/${name}/100.png`] });
