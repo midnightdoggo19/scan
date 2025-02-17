@@ -13,8 +13,18 @@ const logger = winston.createLogger({
 	]
 });
 
-function checkForNewVersion() {
+async function checkForNewVersion() {
     
 }
 
-module.exports = { logger, checkForNewVersion }
+async function nameValidation (name) {
+	const profile = await fetch(`https://api.mojang.com/users/profiles/minecraft/${name}`);
+	if (!profile.ok) {
+		throw new 'NameInvalid';
+	}
+	else {
+		return name;
+	};
+}
+
+module.exports = { logger, checkForNewVersion, nameValidation }
