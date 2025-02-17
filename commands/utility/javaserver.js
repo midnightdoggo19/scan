@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const { logger } = require('../../functions.js');
+const { logger, avatar } = require('../../functions.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -32,7 +32,7 @@ module.exports = {
             const widgetEmbed = new EmbedBuilder()
                 .setColor(0x0099FF) // blue
                 .setTitle('Server Status')
-                .setAuthor({ name: 'Server Status', iconURL: 'https://minecraft.wiki/images/Unknown_server.png?0968f', url: 'https://github.com/midnightdoggo19/scan' })
+                .setAuthor({ name: 'Server Status', iconURL: avatar, url: 'https://github.com/midnightdoggo19/scan' })
 
                 .setDescription(String(data.motd.clean)) // unformatted motd
                 .setImage(`https://api.mcstatus.io/v2/icon/${interaction.options.getString('server')}:${interaction.options.getInteger('port') || 25565}`)

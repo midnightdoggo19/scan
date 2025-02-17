@@ -1,6 +1,8 @@
 require('dotenv').config();
 const winston = require('winston');
 
+const avatar = 'https://minecraft.wiki/images/Unknown_server.png?0968f';
+
 const logger = winston.createLogger({
 	level: process.env.LOGLEVEL || 'info',
 	format: winston.format.combine(
@@ -23,4 +25,4 @@ async function nameValidation (name) {
 	};
 };
 
-module.exports = { logger, nameValidation }
+module.exports = { logger, nameValidation, author }
