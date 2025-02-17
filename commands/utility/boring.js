@@ -26,7 +26,8 @@ module.exports = {
         }
         else {
             const score = 100 - lev;
-            await interaction.editReply(`Your uniqueness score is ${score}%!`);
+            await interaction.editReply(`This name's uniqueness score is ${score}%!`);
+            logger.info(`${name} was scored at ${lev}`);
         };
     }
 };
