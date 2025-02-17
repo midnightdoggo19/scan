@@ -2,13 +2,15 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node .",
+    "start": "node --no-warnings=ExperimentalWarning .",
     "register": "node deploy-commands.js"
   },
   "dependencies": {
     "discord.js": "^14.18.0",
     "dotenv": "^16.4.7",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "js-levenshtein": "^1.1.6",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "jest": "^29.7.0",

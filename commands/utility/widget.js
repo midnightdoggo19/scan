@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { logger } = require('../../functions.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -12,7 +13,9 @@ module.exports = {
         .addIntegerOption(option =>
             option.setName('port')
                 .setDescription('The port the server runs on (default 25565)')
-        ),
+        )
+        .setContexts(0, 1, 2)
+        .setIntegrationTypes(0, 1),
 
     async execute(interaction) {
         await interaction.deferReply();
@@ -25,7 +28,7 @@ module.exports = {
 
             await interaction.editReply({ embeds: [widgetEmbed] });
         } catch (error) {
-            console.error('Error:', error);
+            logger.error('Error:', error);
             await interaction.editReply('Failed to fetch server widget.');
         }
     }

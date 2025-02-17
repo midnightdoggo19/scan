@@ -2,6 +2,7 @@ const { REST, Routes } = require('discord.js');
 require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
+const { logger } = require('./functions.js');
 
 const commands = [];
 const foldersPath = path.join(__dirname, 'commands');
@@ -16,24 +17,23 @@ for (const folder of commandFolders) {
 		if ('data' in command && 'execute' in command) {
 			commands.push(command.data.toJSON());
 		} else {
-			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+			logger.info(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 		}
 	}
 }
-
 
 const rest = new REST().setToken(process.env.TOKEN);
 
 (async () => {
 	try {
-		console.log(`Started refreshing ${commands.length} application (/) commands.`);
-		console.log(`Bot ID: ${process.env.ID}`);
+		logger.info(`Started refreshing ${commands.length} application (/) commands.`);
+		logger.info(`Bot ID: ${process.env.ID}`);
 		const data = await rest.put(
 			Routes.applicationCommands(process.env.ID),
 			{ body: commands },
 		);
 
-		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+		logger.info(`Successfully reloaded ${data.length} application (/) commands.`);
 	} catch (error) {
 
 		console.error(error);
@@ -42,5 +42,5 @@ const rest = new REST().setToken(process.env.TOKEN);
 
 // deletes guild commands
 // rest.put(Routes.applicationGuildCommands(process.env.ID, process.env.GUILD), { body: [] })
-// 	.then(() => console.log('Successfully deleted all guild commands.'))
+// 	.then(() => logger.info('Successfully deleted all guild commands.'))
 // 	.catch(console.error);
