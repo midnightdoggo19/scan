@@ -25,4 +25,4 @@ async function nameValidation (name) {
 	};
 };
 
-module.exports = { logger, nameValidation, author }
+module.exports = { logger, nameValidation, avatar }
