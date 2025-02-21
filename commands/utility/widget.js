@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const { logger, avatar } = require('../../functions.js');
+const { logger, avatar, javaPort } = require('../../functions.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -12,7 +12,7 @@ module.exports = {
         )
         .addIntegerOption(option =>
             option.setName('port')
-                .setDescription('The port the server runs on (default 25565)')
+               .setDescription(`The port the server runs on (default ${javaPort})`)
         )
         .setContexts(0, 1, 2)
         .setIntegrationTypes(0, 1),
@@ -24,7 +24,7 @@ module.exports = {
                 .setColor(0x0099FF)
                 .setTitle('Server Status')
                 .setAuthor({ name: 'Server Status', iconURL: avatar, url: 'https://github.com/midnightdoggo19/scan' })
-                .setImage(`https://api.mcstatus.io/v2/widget/java/${interaction.options.getString('server')}:${interaction.options.getInteger('port') || 25565}`)
+                .setImage(`https://api.mcstatus.io/v2/widget/java/${interaction.options.getString('server')}:${interaction.options.getInteger('port') || javaPort}`)
                 .setTimestamp()
 
             await interaction.editReply({ embeds: [widgetEmbed] });

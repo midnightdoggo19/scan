@@ -3,6 +3,9 @@ const winston = require('winston');
 
 const avatar = 'https://minecraft.wiki/images/Unknown_server.png?0968f';
 
+const javaPort = 25565;
+const bedrockPort = 19132;
+
 const logger = winston.createLogger({
 	level: process.env.LOGLEVEL || 'info',
 	format: winston.format.combine(
@@ -25,4 +28,4 @@ async function nameValidation (name) {
 	};
 };
 
-module.exports = { logger, nameValidation, avatar }
+module.exports = { logger, nameValidation, avatar, javaPort, bedrockPort }
