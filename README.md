@@ -21,3 +21,13 @@ You can either add the bot to a server or as a client-side bot to use it anywher
 # Required Intents:
 * Server Members
 * Message Content
+
+# Commands
+```
+/bedrock - check the status of a Bedrock server
+/java - check the status of a Java server
+/boring - check the "boringness" of a name
+/ping - check if the bot is online
+/skin - get a player's skin
+/widget - get the widget of a server
+```
