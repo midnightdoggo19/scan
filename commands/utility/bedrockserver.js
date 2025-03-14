@@ -47,6 +47,7 @@ module.exports = {
                 .setFooter({ text: 'View this project on Github', iconURL: 'https://github.com/midnightdoggo19/scan' });
 
             await interaction.editReply({ embeds: [widgetEmbed] });
+            logger.debug(`Got status of ${server} on Bedrock`);
         } catch (error) {
             logger.error('Error:', error);
             await interaction.editReply('Failed to fetch server information.');

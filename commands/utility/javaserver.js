@@ -27,7 +27,6 @@ module.exports = {
         if (!response.ok) {
             logger.error(`HTTP error! Status: ${response.status}`);
         }
-
         const data = await response.json();
 
         try {
@@ -47,6 +46,7 @@ module.exports = {
                 .setTimestamp();
 
             await interaction.editReply({ embeds: [widgetEmbed] });
+            logger.debug(`Got status of ${server} on Java`);
         } catch (error) {
             logger.error('Error:', error);
             await interaction.editReply('Failed to fetch server information.');

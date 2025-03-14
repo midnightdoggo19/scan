@@ -28,6 +28,7 @@ module.exports = {
                 .setTimestamp()
 
             await interaction.editReply({ embeds: [widgetEmbed] });
+            logger.debug(`Got widget of ${interaction.options.getString('server')}`);
         } catch (error) {
             logger.error('Error:', error);
             await interaction.editReply('Failed to fetch server widget.');
