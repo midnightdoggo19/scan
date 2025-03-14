@@ -15,7 +15,7 @@ module.exports = {
         .setIntegrationTypes(0, 1),
 
     async execute(interaction) {
-        interaction.deferReply()
+        await interaction.deferReply();
 
         const name = interaction.options.getString('name');
 
