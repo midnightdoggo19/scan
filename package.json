@@ -3,7 +3,7 @@
   "scripts": {
     "test": "jest",
     "start": "node --no-warnings=ExperimentalWarning .",
-    "register": "node deploy.js"
+    "register": "node ."
   },
   "dependencies": {
     "discord.js": "^14.18.0",
