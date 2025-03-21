@@ -19,7 +19,7 @@ module.exports = {
 
         const name = interaction.options.getString('name');
 
-        try { await nameValidation(name); } catch (NameInvalid) { interaction.editReply(`${name} is not a valid Minecraft username!`); return; };
+        // try { await nameValidation(name); } catch (NameInvalid) { interaction.editReply(`${name} is not a valid Minecraft username!`); return; };
 
         const words = await fetch('https://matdoes.dev/minecraft-uuids/api/words.txt') + await fetch('https://matdoes.dev/minecraft-uuids/api/suffixes.txt');
         const lev = await String(levenshtein(name, String(words)));
