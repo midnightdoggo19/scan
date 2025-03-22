@@ -18,7 +18,6 @@ module.exports = {
         await interaction.deferReply();
 
         const name = interaction.options.getString('name');
-        const valid = await nameValidation(name);
 
         const words = await fetch('https://matdoes.dev/minecraft-uuids/api/words.txt') + await fetch('https://matdoes.dev/minecraft-uuids/api/suffixes.txt');
         const lev = await String(levenshtein(name, String(words)));
