@@ -2,7 +2,6 @@ require('dotenv').config();
 const winston = require('winston');
 
 const avatar = 'https://minecraft.wiki/images/Unknown_server.png?0968f';
-
 const javaPort = 25565;
 const bedrockPort = 19132;
 
@@ -18,14 +17,4 @@ const logger = winston.createLogger({
 	]
 });
 
-async function nameValidation (name) {
-	const profile = await fetch(`https://api.mojang.com/users/profiles/minecraft/${name}`);
-	if (!profile.ok) {
-		throw new 'NameInvalid';
-	}
-	else {
-		return name;
-	};
-};
-
-module.exports = { logger, nameValidation, avatar, javaPort, bedrockPort }
+module.exports = { logger, avatar, javaPort, bedrockPort }

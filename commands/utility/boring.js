@@ -18,16 +18,16 @@ module.exports = {
         await interaction.deferReply();
 
         const name = interaction.options.getString('name');
+        const valid = await nameValidation(name);
 
-        try { await nameValidation(name); } catch (NameInvalid) { interaction.editReply(`${name} is not a valid Minecraft username!`); return; };
+        if (valid != true) { await interaction.editReply(`${name} is not a valid Minecraft username!`); return; }
 
         const words = await fetch('https://matdoes.dev/minecraft-uuids/api/words.txt') + await fetch('https://matdoes.dev/minecraft-uuids/api/suffixes.txt');
         const lev = await String(levenshtein(name, String(words)));
 
         if (lev >= 100) {
-            await interaction.editReply('This is just some random keysmashing!');
-        }
-        else {
+            await interaction.editReply('...what');
+        } else {
             const score = 100 - lev;
             await interaction.editReply(`This name's uniqueness score is ${score}%!`);
             logger.info(`${name} was scored at ${lev}`);
