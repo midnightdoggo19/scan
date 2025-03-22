@@ -31,24 +31,24 @@ module.exports = {
         const imageType = interaction.options.getString('type');
 
         logger.debug(`Got ${imageType} of ${name}`);
-        if ( imageType == 'full_front' ) {
-            await interaction.editReply({ files: [`https://mineskin.eu/armor/body/${name}/100.png`] });
-        }
-        else if ( imageType == 'head' ) {
-            await interaction.editReply({ files: [`https://mineskin.eu/headhelm/${name}/100.png`] });
-        }
-        else if ( imageType == 'face' ) {
-            await interaction.editReply({ files: [`https://mineskin.eu/helm/${name}/100.png`] });
-        }
-        else if ( imageType == 'bust' ) {
-            await interaction.editReply({ files: [`https://mineskin.eu/armor/bust/${name}/100.png`] });
-        }
-        else if ( imageType == 'skin') {
-            await interaction.editReply({ files: [`https://mineskin.eu/skin/${name}` + '.png'] }); // get skin, make image
-        }
-        else {
-            logger.error('Invalid option!')
-            await interaction.editReply('Invalid option!');
+        try {
+            if ( imageType == 'full_front' ) {
+                await interaction.editReply({ files: [`https://mineskin.eu/armor/body/${name}/100.png`] });
+            } else if ( imageType == 'head' ) {
+                await interaction.editReply({ files: [`https://mineskin.eu/headhelm/${name}/100.png`] });
+            } else if ( imageType == 'face' ) {
+                await interaction.editReply({ files: [`https://mineskin.eu/helm/${name}/100.png`] });
+            } else if ( imageType == 'bust' ) {
+                await interaction.editReply({ files: [`https://mineskin.eu/armor/bust/${name}/100.png`] });
+            } else if ( imageType == 'skin') {
+                await interaction.editReply({ files: [`https://mineskin.eu/skin/${name}` + '.png'] }); // get skin, make image
+            } else {
+                logger.error('Invalid option!')
+                await interaction.editReply('Invalid option!');
+            }
+        } catch (err) {
+            await logger.error(err);
+            await interaction.editReply('There was an error!');
         }
 	},
 };
